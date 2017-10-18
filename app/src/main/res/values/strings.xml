@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LittleApp</string>
+    <string name="username">账号:</string>
+    <string name="password">密码:</string>
+    <string name="username_hint">请输入用户名</string>
+    <string name="pwd_hint">请输入密码</string>
+    <string name="remember">记住密码</string>
+    <string name="register">注册</string>
+    <string name="login">登陆</string>
+</resources>
