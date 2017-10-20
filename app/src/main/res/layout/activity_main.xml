@@ -121,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:background="@android:color/holo_blue_dark"
+                android:onClick="Login"
                 android:text="@string/login"
                 android:textColor="@android:color/background_light"
                 app:layout_constraintBottom_toBottomOf="parent"
