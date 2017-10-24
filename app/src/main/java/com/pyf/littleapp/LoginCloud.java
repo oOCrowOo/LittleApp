@@ -10,7 +10,7 @@ import java.net.URL;
  * Created by yf_p on 2017/10/20.
  */
 
-public class Cloud {
+public class LoginCloud {
 
     String cloud_str = "123.207.125.107";
 
