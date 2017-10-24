@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     String username;
     String password;
+    private UserCloud userCloud = new UserCloud();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +22,16 @@ public class MainActivity extends AppCompatActivity {
         EditText pwd_text = (EditText) findViewById(R.id.password);
         username = user_text.getText().toString();
         password = pwd_text.getText().toString();
+        final String username_temp = username;
+        final String pwd_temp = password;
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                userCloud.login(username_temp,pwd_temp);
+            }
+        }).start();
+
+
     }
 }
