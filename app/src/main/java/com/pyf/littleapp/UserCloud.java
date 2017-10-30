@@ -23,7 +23,6 @@ public class UserCloud {
         JSONObject user_info = new JSONObject();
         try{
             String login_url_str = cloud_str + "/login?username=" + username + "&pwd=" + pwd;
-            System.out.println(login_url_str);
             URL url = new URL(login_url_str);
             connection=(HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
@@ -57,5 +56,46 @@ public class UserCloud {
             }
         }
         return user_info;
+    }
+
+    public int reg(final String username, final String pwd, final String phone){
+        HttpURLConnection connection = null;
+        BufferedReader reader;
+        int result=0;
+
+        try{
+            String reg_url = cloud_str + "/register?username=" + username + "&pwd=" + pwd + "&phone=" + phone + "&manager=false";
+            URL url = new URL(reg_url);
+            connection=(HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Charset","UTF-8");
+            connection.setConnectTimeout(8000);
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setReadTimeout(8000);
+            connection.setUseCaches(false);
+            connection.connect();
+
+            if(connection.getResponseCode()==200){
+                InputStream in = connection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(in));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while((line=reader.readLine())!=null){
+                    response.append(line);
+                }
+                result =Integer.valueOf(response.toString()).intValue();
+            }
+
+
+        }catch(Exception e){
+            System.out.println("register exception");
+            e.printStackTrace();
+        }finally{
+            if(connection!=null){
+                connection.disconnect();
+            }
+        }
+        return result;
     }
 }
